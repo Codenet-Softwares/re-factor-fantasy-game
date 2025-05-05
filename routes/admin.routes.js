@@ -1,4 +1,4 @@
-import { createAdmin } from "../controllers/admin.controller";
+import { createAdmin } from "../controllers/admin.controller.js";
 
 
 export const adminRoute = (app) => {

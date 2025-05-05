@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import sequelize from './config/database.js';
+import { adminRoute } from './routes/admin.routes.js';
 
 if (process.env.NODE_ENV === 'production') {
     dotenv.config({ path: '.env.production' });
@@ -26,6 +27,8 @@ app.get('/', (req, res) => {
         res.send('Development environment is running.');
     }
 });
+
+adminRoute(app);
 
 sequelize.sync({ alter: true })
     .then(() => {
