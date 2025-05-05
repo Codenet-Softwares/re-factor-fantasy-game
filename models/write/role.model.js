@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../config/database.js";
+import { write_db } from "../../config/database.js";
 
-const Role = sequelize.define('Role', {
+const Role = write_db.define('Role', {
     user_id: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -10,6 +10,10 @@ const Role = sequelize.define('Role', {
         type: DataTypes.STRING,
         allowNull: true,
     }
-})
+},
+    {
+        timestamps: true,
+    }
+)
 
 export default Role

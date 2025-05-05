@@ -3,13 +3,13 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const sequelize = new Sequelize(
-    process.env.DB_NAME,
-    process.env.DB_USER,
-    process.env.DB_PASS,
+export const write_db = new Sequelize(
+    process.env.WRITE_DB_NAME,
+    process.env.WRITE_DB_USER,
+    process.env.WRITE_DB_PASS,
     {
-        host: process.env.DB_HOST,
-        dialect: process.env.DB_DIALECT,
+        host: process.env.WRITE_DB_HOST,
+        dialect: process.env.WRITE_DB_DIALECT,
         logging: false,
         pool: {
             max: 5,
@@ -17,13 +17,35 @@ const sequelize = new Sequelize(
             acquire: 30000,
             idle: 10000,
         }
-    },
+    }
 );
 
-sequelize.authenticate().then(() => {
-    console.log("Database connection established.");
-}).catch((err) => {
-    console.error("Unable to connect to the database:", err);
-});
+export const read_db = new Sequelize(
+    process.env.READ_DB_NAME,
+    process.env.READ_DB_USER,
+    process.env.READ_DB_PASS,
+    {
+        host: process.env.READ_DB_HOST,
+        dialect: process.env.READ_DB_DIALECT,
+        logging: false,
+        pool: {
+            max: 5,
+            min: 0,
+            acquire: 30000,
+            idle: 10000,
+        }
+    }
+);
 
-export default sequelize;
+(async () => {
+    try {
+        await write_db.authenticate();
+        console.log('✅ Write DB connected');
+
+        await read_db.authenticate();
+        console.log('✅ Read DB connected');
+    } catch (err) {
+        console.error('❌ DB connection error:', err);
+    }
+})();
+

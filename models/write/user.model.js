@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../config/database.js";
+import { write_db } from "../../config/database.js";
 
-const User = sequelize.define('User', {
+const User = write_db.define('User', {
     user_name: {
         type: DataTypes.STRING,
         allowNull: false,

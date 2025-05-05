@@ -2,8 +2,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import sequelize from './config/database.js';
-import { adminRoute } from './routes/admin.routes.js';
+import { write_db, read_db } from './config/database.js';
 
 if (process.env.NODE_ENV === 'production') {
     dotenv.config({ path: '.env.production' });
@@ -28,19 +27,19 @@ app.get('/', (req, res) => {
     }
 });
 
-adminRoute(app);
-
-sequelize.sync({ alter: true })
+Promise.all([
+    write_db.sync({ alter: true }),
+    read_db.sync({ alter: true })
+])
     .then(() => {
-        console.log('Database & tables created!');
-        app.listen(process.env.PORT, () => {
-            console.log(`App is running on  - http://localhost:${process.env.PORT || 8000}`);
+        console.log('✅ Databases & tables synced!');
+        const port = process.env.PORT || 8000;
+        app.listen(port, () => {
+            console.log(`🚀 App running on http://localhost:${port}`);
         });
-
-
     })
     .catch(err => {
-        console.error('Unable to create tables:', err);
+        console.error('❌ Error syncing DBs:', err);
     });
 
 process.on('SIGINT', async () => {

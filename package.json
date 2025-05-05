@@ -4,6 +4,7 @@
   "type": "module",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "cross-env NODE_ENV=development nodemon server.js",
     "start:prod": "cross-env NODE_ENV=production node server.js",

@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../config/database.js";
+import { write_db } from "../../config/database.js";
 
-const Permission = sequelize.define('Permission', {
+const Permission = write_db.define('Permission', {
     user_id: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -14,6 +14,10 @@ const Permission = sequelize.define('Permission', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-})
+},
+    {
+        timestamps: true,
+    }
+)
 
 export default Permission
