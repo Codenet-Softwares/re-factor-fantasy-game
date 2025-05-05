@@ -1,7 +1,12 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, INTEGER } from "sequelize";
 import { write_db } from "../../config/database.js";
 
 const User = write_db.define('User', {
+    id: {
+        type: INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+    },
     user_name: {
         type: DataTypes.STRING,
         allowNull: false,

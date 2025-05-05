@@ -2,6 +2,11 @@ import { DataTypes } from "sequelize";
 import { write_db } from "../../config/database.js";
 
 const Permission = write_db.define('Permission', {
+    id: {
+        type: INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+    },
     user_id: {
         type: DataTypes.STRING,
         allowNull: false,

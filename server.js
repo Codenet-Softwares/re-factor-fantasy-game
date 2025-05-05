@@ -43,6 +43,6 @@ Promise.all([
     });
 
 process.on('SIGINT', async () => {
-    await sequelize.close();
+    await write_db.close();
     process.exit(0);
 });

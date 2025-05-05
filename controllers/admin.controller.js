@@ -1,6 +1,11 @@
+import { write_db, read_db } from "../config/database.js";
+import { messages, string } from '../utils/string.js';
+import { statusCode } from "../utils/status_codes.js";
+import { apiResponseSuccess, apiResponseErr } from "../utils/error_handler.js";
+import bcrypt from 'bcrypt'
 
 export const createAdmin = async (req, res) => {
-    const transaction = await sequelize.transaction();
+    const transaction = await write_db.transaction();
     try {
       const user = req.user;
       const { userName, password, roles } = req.body;
@@ -65,7 +70,7 @@ export const createAdmin = async (req, res) => {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, salt);
   
-      const newAdmin = await admins.create({
+      const newAdmin = await User.create({
         adminId: uuid4(),
         userName,
         password: hashedPassword,
