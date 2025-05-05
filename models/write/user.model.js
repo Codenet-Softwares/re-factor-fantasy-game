@@ -3,7 +3,7 @@ import { write_db } from "../../config/database.js";
 
 const User = write_db.define('User', {
     id: {
-        type: INTEGER,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
     },

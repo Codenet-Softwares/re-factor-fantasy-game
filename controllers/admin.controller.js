@@ -2,6 +2,12 @@ import { write_db, read_db } from "../config/database.js";
 import { messages, string } from '../utils/string.js';
 import { statusCode } from "../utils/status_codes.js";
 import { apiResponseSuccess, apiResponseErr } from "../utils/error_handler.js";
+import User from "../models/write/user.model.js";
+import Permission from '../models/write/permission.model.js';
+import Role from '../models/write/role.model.js';
+import Credit_Refs from '../models/write/credit_refs.model.js'
+import Partnerships from '../models/write/partnerships.model.js'
+
 import bcrypt from 'bcrypt'
 
 export const createAdmin = async (req, res) => {

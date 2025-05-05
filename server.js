@@ -3,6 +3,11 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { write_db, read_db } from './config/database.js';
+import  './models/write/permission.model.js';
+import './models/write/role.model.js';
+import  './models/write/credit_refs.model.js'
+import  './models/write/partnerships.model.js'
+import './models/write/user.model.js'
 
 if (process.env.NODE_ENV === 'production') {
     dotenv.config({ path: '.env.production' });

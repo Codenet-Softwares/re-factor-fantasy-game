@@ -3,7 +3,7 @@ import { write_db } from "../../config/database.js";
 
 const Partnerships = write_db.define('Partnerships', {
     id: {
-        type: INTEGER,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
     },
@@ -11,10 +11,9 @@ const Partnerships = write_db.define('Partnerships', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    partnerships: {
+    partnership: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: [],
     },
 },
     {

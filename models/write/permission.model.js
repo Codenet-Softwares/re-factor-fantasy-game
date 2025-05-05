@@ -3,7 +3,7 @@ import { write_db } from "../../config/database.js";
 
 const Permission = write_db.define('Permission', {
     id: {
-        type: INTEGER,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
     },

@@ -3,7 +3,7 @@ import { write_db } from "../../config/database.js";
 
 const Credit_Refs = write_db.define('Credit_Refs', {
     id: {
-        type: INTEGER,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
     },
@@ -11,10 +11,10 @@ const Credit_Refs = write_db.define('Credit_Refs', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    credit_refs: {
+    credit_ref: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: [],
+        defaultValue: 0,
     },
 },
     {
@@ -23,3 +23,5 @@ const Credit_Refs = write_db.define('Credit_Refs', {
 )
 
 export default Credit_Refs
+
+
